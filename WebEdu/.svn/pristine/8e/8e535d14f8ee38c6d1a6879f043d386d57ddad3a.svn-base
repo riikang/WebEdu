@@ -1,0 +1,42 @@
+package com.WebEdu.DreamFlying.action;
+import java.util.List;
+import javax.annotation.Resource;
+import com.WebEdu.DreamFlying.model.Student;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+
+public class UserAction {
+	@Resource private StudentServiceDao stuService;
+	private List<Student> stus;
+	private Student stu;
+	public List<Student> getStus() {
+		return stus;
+	}
+	public void setStus(List<Student> stus) {
+		this.stus = stus;
+	}
+	public Student getStu() {
+		return stu;
+	}
+	public void setStu(Student stu) {
+		this.stu = stu;
+	}
+	
+	public String loginCheck() {
+		System.out.println();
+		System.out.println("!!!!!!!!!!!!!!!!ok!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println();
+		/*stu=stuService.
+		users=userService.findByUid(user.getUid());
+		if(users.isEmpty()){
+			addFieldError("user.uid", "用户名不存在");
+			return "notin";
+		}
+		if(!user.getPassword().equals(users.get(0).getPassword())){
+			addFieldError("user.password", "密码输入不正确");
+			return "notin";
+		}
+		ActionContext.getContext().getSession().put("uname", users.get(0).getUname());*/
+		return "success";
+	}
+	
+}

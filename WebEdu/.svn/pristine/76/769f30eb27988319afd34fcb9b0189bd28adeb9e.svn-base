@@ -1,0 +1,9 @@
+package com.WebEdu.DreamFlying.dao;
+import com.WebEdu.DreamFlying.model.Teacher;
+/**
+ * @author  riikang
+ */
+
+public interface TeacherDao extends BaseDao<Teacher> {
+
+}

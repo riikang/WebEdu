@@ -1,0 +1,8 @@
+package com.WebEdu.DreamFlying.dao.impl;
+
+import com.WebEdu.DreamFlying.dao.ExamDao;
+import com.WebEdu.DreamFlying.model.Exam;
+
+public class ExamDaoImpl extends BaseDaoImpl<Exam> implements ExamDao {
+
+}

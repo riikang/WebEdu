@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Exam" table="exam">
+		<id column="eid" name="eid" type="integer">
+		 <generator class="identity"/>
+		</id>
+		<property column="题目" generated="never" lazy="false" name="question"
+			type="string"  />
+		<property column="选项A" generated="never" lazy="false" name="optionA"
+			type="string" />
+		<property column="选项B" generated="never" lazy="false" name="optionB"
+			type="string" />
+		<property column="选项C" generated="never" lazy="false" name="optionC"
+			type="string" />
+		<property column="选项D" generated="never" lazy="false" name="optionD"
+			type="string" />
+		<property column="答案" generated="never" lazy="false" name="answer"
+			type="integer" />
+		<many-to-one name="course" class="Course" column="course_id" not-null="true" fetch="join"/>
+	</class>
+</hibernate-mapping>

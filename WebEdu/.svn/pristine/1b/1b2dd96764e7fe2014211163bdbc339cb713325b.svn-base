@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Resource" table="resource">
+		<id column="rid" name="rid" type="integer">
+		 <generator class="identity"/>
+		</id>
+		<property column="资源名称" generated="never" lazy="false" name="resource_name"
+			type="string"  />
+		<property column="资源类型" generated="never" lazy="false" name="resource_type"
+			type="string" />
+		<property column="资源url" generated="never" lazy="false" name="url"
+			type="string" />
+	</class>
+
+</hibernate-mapping>

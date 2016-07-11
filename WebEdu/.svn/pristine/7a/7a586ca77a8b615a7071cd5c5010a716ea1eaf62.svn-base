@@ -1,0 +1,162 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+
+import com.WebEdu.DreamFlying.model.Course;
+import com.WebEdu.DreamFlying.model.Resources;
+import com.WebEdu.DreamFlying.model.Teacher;
+import com.WebEdu.DreamFlying.service.dao.CourseServiceDao;
+import com.WebEdu.DreamFlying.service.dao.ResourceServiceDao;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+import com.WebEdu.DreamFlying.service.dao.TeacherServiceDao;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CourseAction extends ActionSupport {
+	@Resource private CourseServiceDao courseService;
+	@Resource private ResourceServiceDao resourceService;
+	@Resource private TeacherServiceDao teacherServiceDao;
+	private List<Course> courses;
+	private List<Resources> resources;
+	private List<Resources> res_video;
+	private List<Resources> res_document;
+	private Course course;
+	private Teacher teacher;
+	private Resources resource;
+	private File upload;
+	private String uploadContentType;
+	private String uploadFileName;
+	private String result;
+	private int id;
+	
+	public List<Resources> getRes_video() {
+		return res_video;
+	}
+	public void setRes_video(List<Resources> res_video) {
+		this.res_video = res_video;
+	}
+	public List<Resources> getRes_document() {
+		return res_document;
+	}
+	public void setRes_document(List<Resources> res_document) {
+		this.res_document = res_document;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	public List<Resources> getResources() {
+		return resources;
+	}
+	public void setResources(List<Resources> resources) {
+		this.resources = resources;
+	}
+	public Resources getResource() {
+		return resource;
+	}
+	public void setResource(Resources resource) {
+		this.resource = resource;
+	} 
+	public File getUpload() {
+		return upload;
+	}
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	
+	public String findAllCourse() throws Exception{
+		courses=courseService.findAll(Course.class);
+		return "getAllCourse_success";
+	}
+	
+	public String findTheCourse() throws Exception {
+		course=courseService.findById(Course.class, id);
+		res_video=resourceService.findResourcesByType(id, "video");
+		res_document=resourceService.findResourcesByType(id, "document");
+		return "getCourse_success";
+		
+	}
+	
+    public String  addCourse() throws IOException {
+		String imgPath=null;
+    	String path=ServletActionContext.getServletContext().getRealPath("/img/portfolios/"+course.getType());
+		File file=new File(path);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		imgPath="img/portfolios/"+course.getType()+"/"+uploadFileName;
+		course.setCimg(imgPath);
+		FileUtils.copyFile(upload, new File(file,uploadFileName));
+		
+		try {
+		    teacher=teacherServiceDao.findById(Teacher.class, teacher.getTid());			 		
+			course.getTeachers().add(teacher);
+			teacher.getCourses().add(course);
+			courseService.save(course);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		result="添加课程成功!";
+		return SUCCESS;
+		
+	}
+	
+    public String findAllCourses(){
+    	try {
+    		System.out.println("into");
+			courses=courseService.findAll(Course.class);
+			System.out.println("course : "+courses);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "findCourses_success";
+    }
+	
+}

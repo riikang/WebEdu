@@ -1,0 +1,47 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.util.List;
+import javax.annotation.Resource;
+import com.WebEdu.DreamFlying.model.Student;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+
+public class UserAction extends ActionSupport {
+	@Resource private StudentServiceDao stuService;
+	private List<Student> stus;
+	private Student stu;
+	public List<Student> getStus() {
+		return stus;
+	}
+	public void setStus(List<Student> stus) {
+		this.stus = stus;
+	}
+	public Student getStu() {
+		return stu;
+	}
+	public void setStu(Student stu) {
+		this.stu = stu;
+	}
+	
+	public String loginCheck() {
+		stus=stuService.findByUserName(stu.getUsername());
+		if(stus.isEmpty()){
+			addFieldError("stu.username", "用户名不存在");
+			return "notin";
+		}
+		if(!stu.getPassword().equals(stus.get(0).getPassword())){
+			addFieldError("stu.password", "密码输入不正确");
+			return "notin";
+		}
+		ActionContext.getContext().getSession().put("username", "你好,"+stus.get(0).getSname());
+		return SUCCESS;
+	}
+	
+	public String logOut(){
+		ActionContext.getContext().getSession().remove("username");
+		return "logout";
+	}
+	
+}

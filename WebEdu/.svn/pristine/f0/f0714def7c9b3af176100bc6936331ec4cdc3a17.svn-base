@@ -1,0 +1,30 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import com.WebEdu.DreamFlying.model.Teacher;
+import com.WebEdu.DreamFlying.service.dao.TeacherServiceDao;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class TeacherAction extends ActionSupport {
+	@Resource private TeacherServiceDao teacherServiceDao;
+	private List<Teacher> teachers;
+	private Teacher teacher;
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	
+	
+	
+	
+}

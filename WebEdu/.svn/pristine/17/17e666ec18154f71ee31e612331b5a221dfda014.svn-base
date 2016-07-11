@@ -1,0 +1,32 @@
+package com.WebEdu.DreamFlying.service.dao.impl;
+
+import org.springframework.stereotype.Repository;
+
+import com.WebEdu.DreamFlying.dao.BaseDao;
+import com.WebEdu.DreamFlying.dao.StudentDao;
+import com.WebEdu.DreamFlying.model.Student;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+
+public class StudentServiceDaoImpl extends BaseServiceDaoImpl<Student> implements
+		StudentServiceDao {
+	private StudentDao studentDao;
+//	private BaseDao<Student> baseDao;
+//	 
+//	public BaseDao<Student> getBaseDao() {
+//		return baseDao;
+//	}
+//
+//	public void setBaseDao(BaseDao<Student> baseDao) {
+//		this.baseDao = baseDao;
+//	}
+
+	public StudentDao getStudentDao() {
+		return studentDao;
+	}
+
+	public void setStudentDao(StudentDao studentDao) {
+		this.studentDao = studentDao;
+	}
+
+	
+}

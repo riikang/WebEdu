@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Comment" table="comment">
+		<id column="comid" name="comid" type="integer">
+		 <generator class="identity"/>
+		</id>
+		
+		<property column="评论内容" generated="never" lazy="false" name="content"
+			type="text"  />
+		<property column="作者" generated="never" lazy="false" name="author"
+			type="string" />
+		<property column="评论时间" generated="never" lazy="false" name="date"
+			type="date" />			
+		<many-to-one name="course_id" class="Course" column="course_id" not-null="true" fetch="join"/>
+	</class>
+
+</hibernate-mapping>

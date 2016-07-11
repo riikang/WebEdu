@@ -1,0 +1,18 @@
+package com.WebEdu.DreamFlying.service.dao.impl;
+
+import com.WebEdu.DreamFlying.dao.ResourceDao;
+import com.WebEdu.DreamFlying.model.Resource;
+import com.WebEdu.DreamFlying.service.dao.ResourceServiceDao;
+
+public class ResourceServiceDaoImpl extends BaseServiceDaoImpl<Resource> implements ResourceServiceDao {
+	private ResourceDao resource;
+
+	public ResourceDao getResource() {
+		return resource;
+	}
+
+	public void setResource(ResourceDao resource) {
+		this.resource = resource;
+	}
+	
+}

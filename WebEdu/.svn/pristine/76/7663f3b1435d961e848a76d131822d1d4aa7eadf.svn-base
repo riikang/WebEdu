@@ -1,0 +1,13 @@
+package com.WebEdu.DreamFlying.dao.impl;
+
+import java.util.List;
+
+import com.WebEdu.DreamFlying.dao.ResourceDao;
+import com.WebEdu.DreamFlying.model.Resources;
+import com.WebEdu.DreamFlying.model.Student;
+
+public class ResourceDaoImpl extends BaseDaoImpl<Resources> implements ResourceDao {
+	public List<Resources> findStudentByKey(int course_id){
+		return (List<Resources>) getHibernateTemplate().find("from Resources where course_id ='"+course_id+"'");
+	}
+}

@@ -1,0 +1,12 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Take_class" table="take_class">
+		<id column="tcid" name="tcid" type="integer">
+		 <generator class="identity"/>
+		</id>
+		<many-to-one name="student_id" class="Student" column="sid" not-null="true" fetch="join"/>
+		<many-to-one name="course_id" class="Course" column="cid" not-null="true" fetch="join"/>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,302 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    <title>DF - 在线学习网站</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.useso.com/css?family=Italiana' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.useso.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.useso.com/css?family=Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'>
+	<link href="css/my.css" rel="stylesheet" type="text/css" media="all"/>
+	<script type="application/x-javascript"> 
+		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	</script>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/responsiveslides.min.js"></script>
+	<script>
+    $(function () {
+      	$("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+  </head>
+  
+  <body>
+    <!--header-->
+			<div class="header">
+				<div class="container">
+					<div class="header-top">
+						<nav class="navbar navbar-default">
+							<div class="container-fluid">
+								<div class="navbar-header">									  
+									<div class="navbar-brand">
+										<h1><a href="index.html">Flying-Dream</a></h1>
+									</div>
+								</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							  <ul class="nav navbar-nav"> 
+									<li class="active"><a href="index.jsp">主页 <span class="sr-only">(current)</span></a></li>
+									<li><a href="course.jsp">课程</a></li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户 <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="login.jsp">登录</a></li>
+									<li><a href="#">注销</a></li>
+								</ul>
+									</li>					
+									<li><a href="contact.jsp">联系方式</a></li>
+								</ul>
+							</div>
+  						</div>		
+					</nav>
+				</div>
+				
+			<div class="slider">
+				<div class="callbacks_container">
+					<ul class="rslides" id="slider">
+						 <li>	 
+							<div class="caption">
+								<h3>只要心还在跳，就要努力学习。 —— 张海迪 </h3>
+							</div>
+						 </li>
+						 <li>
+							<div class="caption">						 
+								<h3>读活书，活读书，读书活。 —— 郭沫若 </h3>  
+							</div>
+						</li>
+						 <li>	          
+							<div class="caption">
+								<h3>游手好闲地学习，并不比学习游手好闲好。<br> —— 约翰·贝勒斯 </h3>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--header-->
+
+	<!--课程推荐-->
+	<div class="content">
+		<div class="about">
+			<div class="container">
+				<div class="header-bottom">
+					<div class="header-grids">
+						<div class="col-md-4 header-grid">
+							<div class="header-bg">
+                            
+								<a href="#"><img src="images/p1.jpg"" class="img-responsive" alt="/"></a>
+								<a href="#"><h4>Hadoop</h4></a>
+								<p>Hadoop是一个由Apache基金会所开发的分布式系统基础架构</p>
+							</div>
+						</div>
+						<div class="col-md-4 header-grid">
+							<div class="header-bg">
+								<a href="course.html"><img src="images/p2.jpg" class="img-responsive" alt="/"></a>
+								<a href="course.html"><h4>HTML5 </h4></a>
+								<p>HTML5 是下一代的 HTML,万维网的核心语言、标准通用标记语言下的一个应用超文本标记语言</p>
+							</div>
+						</div>
+						<div class="col-md-4 header-grid">
+							<div class="header-bg">
+								<a href="#"><img src="images/p3.jpg" class="img-responsive" alt="/"></a>
+								<a href="#"><h4>ZhuangBi</h4></a>
+								<p>ZhuangBi是一门技术活，学好了可以横行江湖,还不快加入我们的行列</p>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+					<h2>&nbsp;</h2>
+					<div class="about-grids">
+						<div class="col-md-6 about-grid">
+							<div class="about-grid-left">
+								<h4>个人空间</h4>
+								<p>管理您的个人信息，查看考试成绩，学习进度。</p>
+							</div>
+							<div class="about-grid-right">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="col-md-6 about-grid">
+							<div class="about-grid-right aliquam">
+								<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+							</div>
+							<div class="about-grid-left non">
+								<h4>课后习题 </h4>
+								<p>要想成绩好，习题少不了。</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>		
+					<div class="about-grids">
+						<div class="col-md-6 about-grid">
+							<div class="about-grid-left">
+								<h4>后台管理</h4>
+								<p>只有管理员才能进入哦。</p>
+							</div>
+							<div class="about-grid-right">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="col-md-6 about-grid">
+							<div class="about-grid-right aliquam">
+								<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+							</div>
+							<div class="about-grid-left non">
+								<h4>课程选择</h4>
+								<p>少年，我看你骨骼精奇，是万中无一的学习奇才，维护世界的和平就靠你了，我这有许多书籍，见与你有缘，就免费送你了。</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+			</div>
+		</div>
+	<!--课程推荐-->
+	
+	<!--网页服务-->
+				<div class="student">
+					<div class="container">
+						<h3>网站提供</h3>
+							<div class="student-grids">
+								<div class="col-md-4 student-grid">
+									<img src="images/p4.jpg" class="img-responsive" alt=""/>
+									<h4>在线课程教学</h4>
+									<p>本网站将提供当下热门的课程，供各位用户学习，以及提供相关的课程资源下载。</p>
+								</div>
+								<div class="col-md-4 student-grid">
+								<img src="images/p5.jpg" class="img-responsive" alt="/">
+									<h4>课后习题巩固</h4>
+									<p>在完成了一门课程的学习，您可以进行相关习题的巩固练习，让你如虎添翼。</p>
+								</div>
+								<div class="col-md-4 student-grid">
+								<img src="images/p6.jpg" class="img-responsive" alt="/">
+									<h4>师生交流互动</h4>
+									<p>在每门课程里，我们会提供老师与学生，以及学生与学生的交流平台，让每位学生的问题得到及时的解决。</p>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+					</div>
+				</div>
+		<!--网页服务-->
+		
+		<!-- 新课程-->
+		<div class="new-course">
+			<div class="container">
+				<h3>新课程</h3>
+					<div class="new-course-grids">
+					<div class="col-md-6 new-course-grid">
+						<img src="images/p7.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>Encididunt Ut</h4>
+							<p>Mauris fermentum tortor non enim aliquet condimentum nam aliquam pretium feugiat duis sem est viverra eu interdum ac.</p>
+						</div>
+					</div>
+					<div class="col-md-6 new-course-grid">
+						<img src="images/p8.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>Condimentum</h4>
+							<p>Mauris fermentum tortor non enim aliquet condimentum nam aliquam pretium feugiat duis sem est viverra eu interdum ac.</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					</div>
+					<div class="new-course-grids1">
+					<div class="col-md-6 new-course-grid">
+						<img src="images/p9.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>Encididunt Ut</h4>
+							<p>Mauris fermentum tortor non enim aliquet condimentum nam aliquam pretium feugiat duis sem est viverra eu interdum ac.</p>
+						</div>
+					</div>
+					<div class="col-md-6 new-course-grid">
+						<img src="images/p10.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>Magna Aliqua</h4>
+							<p>Mauris fermentum tortor non enim aliquet condimentum nam aliquam pretium feugiat duis sem est viverra eu interdum ac.</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					</div>
+			</div>
+		</div>
+		<!-- 新课程-->
+		
+		<div class="testimonial">
+			<div class="container">
+			<div class="testimonial-grids">
+				<div class="col-md-4 testimonial-grid">
+					<h3>学习排行榜</h3>
+					<h4>&nbsp;</h4>
+					<ol style="font-size: 20px; ">
+                        	<li>XXX</li>
+                            <li>aaa</li>
+                            <li>SSS</li>
+                            <li>DDD</li>
+                            <li>FGH</li>
+                            <li>HRGH</li>
+                            <li>GHJGHJ</li>
+                            <li>ERR</li>
+                            <li>BBB</li>
+                            <li>NNNN</li>
+                        </ol>
+				</div>
+					<div class="col-md-8 testimonial-grid-right">
+					<h3>优秀课程</h3>
+						<div class="Works-grids">
+						<div class="col-md-4 Works-grid">
+							<img src="images/e1.jpg" class="img-responsive" alt=""/>
+						<p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u lasec vaserat.</p>
+						</div>
+						<div class="col-md-4 Works-grid">
+							<img src="images/e2.jpg" class="img-responsive" alt=""/>
+						<p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u lasec vaserat.</p>
+						</div>
+						<div class="col-md-4 Works-grid">
+							<img src="images/e3.jpg" class="img-responsive" alt=""/>
+						<p>Kasertas lertyasea deeraeser miasera lertasa ritise doloert ferdas caplicabo nerafaes asety u lasec vaserat.</p>
+						</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				<div class="clearfix"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--footer-->
+				<div class="footer-section">
+					<div class="container">
+						<div class="social-icons">
+							<a href="#"><i class="icon1"></i></a>
+							<a href="#"><i class="icon4"></i></a>
+						</div>
+						<div class="footer-top">
+							<p>Copyright &copy; 2016. By DreamFlying.</p>
+						</div>						
+					</div>
+				</div>
+	<!--footer-->
+
+  </body>
+</html>

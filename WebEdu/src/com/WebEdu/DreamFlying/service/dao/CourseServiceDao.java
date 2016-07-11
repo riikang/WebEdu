@@ -1,0 +1,14 @@
+package com.WebEdu.DreamFlying.service.dao;
+
+import java.util.List;
+
+import com.WebEdu.DreamFlying.model.Course;
+
+public interface CourseServiceDao extends BaseServiceDao<Course> {
+	public List<Course> findByCourseName(String courseName);
+	public List<Course> findPopular();
+	public List<Course> findNewCourse();
+	public List<Course> findGoodCourse();
+	public void update(Course course);
+	public List<Course> findMyCourse(int sid);
+}

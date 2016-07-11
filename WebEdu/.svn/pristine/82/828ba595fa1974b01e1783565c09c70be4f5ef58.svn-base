@@ -1,0 +1,125 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.io.File;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+
+import com.WebEdu.DreamFlying.model.Course;
+import com.WebEdu.DreamFlying.model.Resources;
+import com.WebEdu.DreamFlying.model.Teacher;
+import com.WebEdu.DreamFlying.service.dao.CourseServiceDao;
+import com.WebEdu.DreamFlying.service.dao.ResourceServiceDao;
+import com.WebEdu.DreamFlying.service.dao.TeacherServiceDao;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class TeacherAction extends ActionSupport {
+	@Resource private TeacherServiceDao teacherServiceDao;
+	@Resource private CourseServiceDao courseServiceDao;
+	@Resource private ResourceServiceDao resourceServiceDao;
+	private List<Course> courses;
+	private Course course;
+	private List<Resources> resources;
+	private Resources resource;
+	private List<Teacher> teachers;
+	private Teacher teacher;
+	private File upload;
+
+	private String uploadContentType;
+
+	private String uploadFileName;
+
+	private String result;
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	public List<Resources> getResources() {
+		return resources;
+	}
+	public void setResources(List<Resources> resources) {
+		this.resources = resources;
+	}
+	public Resources getResource() {
+		return resource;
+	}
+	public void setResource(Resources resource) {
+		this.resource = resource;
+	}
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+	
+	public String  addAllResources() throws Exception {
+		courses=courseServiceDao.findAll(Course.class);
+		return "addAllResources";
+	}
+	public String  addResource() throws Exception {
+		String path = ServletActionContext.getServletContext().getRealPath(
+				"/resource");
+		File file = new File(path);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		String resourcePath="resource/"+uploadFileName;
+		resource.setUrl(resourcePath);
+		course=courseServiceDao.findById(Course.class,course.getCid());
+		resource.setCourse(course);
+		resourceServiceDao.save(resource);
+		FileUtils.copyFile(upload, new File(file, uploadFileName));
+		result = "上传成功!";
+		return SUCCESS;
+	}
+
+}

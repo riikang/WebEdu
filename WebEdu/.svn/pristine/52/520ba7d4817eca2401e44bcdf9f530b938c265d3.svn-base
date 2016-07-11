@@ -1,0 +1,58 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.WebEdu.DreamFlying.model.Course;
+import com.WebEdu.DreamFlying.model.Resources;
+import com.WebEdu.DreamFlying.service.dao.CourseServiceDao;
+import com.WebEdu.DreamFlying.service.dao.ResourceServiceDao;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CourseAction extends ActionSupport {
+	@Resource private CourseServiceDao courseService;
+	@Resource private ResourceServiceDao resourceService;
+	private List<Course> courses;
+	private Course course;
+	private List<Resources> resources;
+	private Resources resource;
+	
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	public List<Resources> getResources() {
+		return resources;
+	}
+	public void setResources(List<Resources> resources) {
+		this.resources = resources;
+	}
+	public Resources getResource() {
+		return resource;
+	}
+	public void setResource(Resources resource) {
+		this.resource = resource;
+	} 
+	
+	public String findTheCourse() throws Exception {
+		course=courseService.findById(Course.class, 5);
+		resources=resourceService.findStudentByKey(5);
+		System.out.println("----------------------课程----------------------");
+		System.out.println(course.toString());
+		System.out.println("----------------------课程----------------------");
+		System.out.println(resources.get(0).toString());
+		
+		return "getCourse_success";
+		
+	}
+	
+}

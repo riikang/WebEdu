@@ -1,0 +1,19 @@
+package com.WebEdu.DreamFlying.service.dao.impl;
+
+import com.WebEdu.DreamFlying.dao.CourseDao;
+import com.WebEdu.DreamFlying.model.Course;
+import com.WebEdu.DreamFlying.service.dao.CourseServiceDao;
+
+public class CourseServiceDaoImpl extends BaseServiceDaoImpl<Course> implements
+		CourseServiceDao {
+
+	private CourseDao courseDao;
+
+	public CourseDao getCourseDao() {
+		return courseDao;
+	}
+
+	public void setCourseDao(CourseDao courseDao) {
+		this.courseDao = courseDao;
+	}
+}

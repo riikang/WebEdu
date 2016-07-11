@@ -1,0 +1,6 @@
+package com.WebEdu.DreamFlying.service.dao;
+import com.WebEdu.DreamFlying.model.Teacher;
+
+public interface TeacherServiceDao extends BaseServiceDao<Teacher> {
+
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<constant name="struts.i18n.reload" value="true"/>
+	<constant name="struts.custom.i18n.resources" value="app"/>	
+	<constant name="struts.multipart.maxSize" value="838860800"/>
+	<package name="student" extends="struts-default" namespace="/student">
+		<action name="*_*" class="{1}" method="{2}">
+		    <result name="success">/index.jsp</result>
+			<result name="notin">/login.jsp</result>
+			<result name="logout">/index.jsp</result>
+			<result name="findAllTeachers">/manager/admin-showTeachers.jsp</result>
+			<result name="findAllStudents">/manager/admin-showStudents.jsp</result>
+			<result name="addCourse_FindAllTeachers">/manager/admin-addCourse.jsp</result>
+			<result name="getAllCourse_success">/course.jsp</result>
+			<result name="getCourse_success">/study.jsp</result>
+			<result name="findCourses_success">/manager/admin-showAllCourse.jsp</result>
+			<result name="addAllResources">/teacher/teacher-addResource.jsp</result>
+			<result name="teacherFindResources_success">/teacher/teacher-showAllResources.jsp</result>
+			<result name="managerFindResources_success">/manager/admin-showAllResources.jsp</result>
+			<result name="findResourceById_success">/teacher/teacher-modifyResource.jsp</result>
+			<result name="modifyResource_success" type="chain">teacherAction_findAllResources</result>
+			<result name="saveComment_success" type="chain">courseAction_findTheCourse2</result>
+			<result name="teacher_login_fail">/teacher/teacher-login.jsp</result>
+			<result name="teacher_login_success">/teacher/teacher-index.jsp</result>
+			<result name="admin_login_fail">/manager/admin-login.jsp</result>
+			<result name="admin_login_success">/manager/admin-index.jsp</result>
+			<result name="deleteResource_success" type="chain">teacherAction_findAllResources</result>
+			<result name="findExam_success">/exam.jsp</result>
+
+		</action>
+		
+		<action name="addcourseAction" class="com.WebEdu.DreamFlying.action.CourseAction" method="addCourse">
+		    <result name="success">/manager/admin-addCourse.jsp</result>
+			 <!-- 配置拦截器限制上传文件类型及大小 -->
+		    <interceptor-ref name="fileUpload">
+		    <!-- 上传图片 -->
+		    <param name="allowedTypes">image/bmp,image/x-png,image/png,image/gif,image/jpeg</param>
+		    <param name="maximumSize">10M</param>
+		    </interceptor-ref>
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="addResourceAction" class="com.WebEdu.DreamFlying.action.TeacherAction" method="addResource">
+		    <result name="success">/teacher/teacher-addResource.jsp</result>
+		    <!-- 配置拦截器限制上传文件类型及大小 -->
+		    <interceptor-ref name="fileUpload">
+		    <!-- 上传文档和.mp4格式的视频 --> 
+		    <param name="allowedTypes">video/mp4,application/msword,application/vnd.ms-powerpoint,application/vnd.ms-excel</param>
+		    <param name="maximumSize">800M</param>
+		    </interceptor-ref>
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>	
+		
+		<action name="download" class="com.WebEdu.DreamFlying.action.UserAction">
+		    <result name="success" type="stream">
+		       <param name="contentType">application/octet-stream;charset=iso-8859-1</param>
+		       <param name="inputName">inputStream</param>
+		       <param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+		       <param name="bufferSize">8192</param>
+		    </result>
+		</action>
+		
+	</package>
+	
+</struts>    

@@ -1,0 +1,7 @@
+package com.WebEdu.DreamFlying.service.dao;
+
+import com.WebEdu.DreamFlying.model.Comment;
+
+public interface CommentServiceDao extends BaseServiceDao<Comment> {
+
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Course" table="course">
+		<id column="课程id" name="cid" type="integer">
+		 <generator class="identity"/>
+		</id>
+		<property column="课程名" generated="never" lazy="false" name="cname"
+			type="string"  />
+		<property column="课程描述" generated="never" lazy="false" name="discription"
+			type="string" />
+	
+	</class>
+
+</hibernate-mapping>

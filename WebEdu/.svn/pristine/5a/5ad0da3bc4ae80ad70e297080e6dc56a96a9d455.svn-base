@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Student" table="student">
+		<id column="id" name="sid" type="integer">
+		 <generator class="identity"/>
+		</id>
+		<property column="学号" generated="never" lazy="false" name="username"
+			type="string"  />
+		<property column="密码" generated="never" lazy="false" name="password"
+			type="string" />
+		<property column="学生姓名" generated="never" lazy="false" name="sname"
+			type="string" />
+		<property column="性别" generated="never" lazy="false" name="sex"
+			type="string"/>
+		<property column="出生年月" generated="never" lazy="false" name="birthday"
+			type="date" />
+		<property column="联系地址" generated="never" lazy="false" name="address"
+			type="string" />
+		<property column="联系电话" generated="never" lazy="false" name="phoneNum"
+			type="string"/>
+		<property column="已获得的学分" generated="never" lazy="false"
+			name="credit" type="integer" />
+	</class>
+
+</hibernate-mapping>

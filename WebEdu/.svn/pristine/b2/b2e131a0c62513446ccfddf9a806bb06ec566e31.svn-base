@@ -1,0 +1,81 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.WebEdu.DreamFlying.model.Student;
+import com.WebEdu.DreamFlying.model.Teacher;
+import com.WebEdu.DreamFlying.service.dao.ManagerServiceDao;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+import com.WebEdu.DreamFlying.service.dao.TeacherServiceDao;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ManagerAction extends ActionSupport{
+	@Resource ManagerServiceDao managerService;
+	@Resource TeacherServiceDao teacherService;
+	@Resource StudentServiceDao studentService;
+	private Teacher teacher;
+	private List<Teacher> teachers;
+	private List<Student> students;
+	public ManagerServiceDao getManagerService() {
+		return managerService;
+	}
+	public void setManagerService(ManagerServiceDao managerService) {
+		this.managerService = managerService;
+	}
+	public TeacherServiceDao getTeacherService() {
+		return teacherService;
+	}
+	public void setTeacherServiceDao(TeacherServiceDao teacherService) {
+		this.teacherService = teacherService;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+	
+	public StudentServiceDao getStudentService() {
+		return studentService;
+	}
+	public void setStudentService(StudentServiceDao studentService) {
+		this.studentService = studentService;
+	}
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	public void setTeacherService(TeacherServiceDao teacherService) {
+		this.teacherService = teacherService;
+	}
+	public String findAllTeachers(){
+		System.out.println("OK");
+		teachers=teacherService.findAllTeachers();
+		System.out.println("teachersList : "+teachers);
+		return "findAllTeachers";
+	}
+	public String addCourseFindAllTeachers(){
+		System.out.println("OK");
+		teachers=teacherService.findAllTeachers();
+		System.out.println("teachersList : "+teachers);
+		return "addCourse_FindAllTeachers";
+	}
+	
+	
+	public String findAllStudents(){
+		System.out.println("OK");
+		students=studentService.findAllStudents();
+		System.out.println("studentList : "+students);
+		return "findAllStudents";
+	}
+}

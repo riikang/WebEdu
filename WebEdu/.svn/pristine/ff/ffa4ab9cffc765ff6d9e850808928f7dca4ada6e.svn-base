@@ -1,0 +1,7 @@
+package com.WebEdu.DreamFlying.dao;
+
+import com.WebEdu.DreamFlying.model.Resource;
+
+public interface ResourceDao extends BaseDao<Resource> {
+
+}

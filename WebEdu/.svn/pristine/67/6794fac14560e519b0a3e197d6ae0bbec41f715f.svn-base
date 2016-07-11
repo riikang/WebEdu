@@ -1,0 +1,22 @@
+package com.WebEdu.DreamFlying.dao.impl;
+
+import java.util.List;
+
+import com.WebEdu.DreamFlying.dao.CourseDao;
+import com.WebEdu.DreamFlying.model.Course;
+
+public class CourseDaoImpl extends BaseDaoImpl<Course> implements CourseDao {
+	public List<Course> findByCourseName(String courseName){
+		return (List<Course>)getHibernateTemplate().find("from Course where cname ='"+courseName+"'");
+	}
+	public List<Course> findPopular(){
+		return (List<Course>)getHibernateTemplate().find("from Course order by heat desc").subList(0, 3);
+	}
+	public List<Course> findNewCourse(){
+		return (List<Course>)getHibernateTemplate().find("from Course order by cid desc").subList(0, 4);
+	}
+	public List<Course> findGoodCourse(){
+		return (List<Course>)getHibernateTemplate().find("from Course order by cid").subList(0, 3);
+	}
+	
+}

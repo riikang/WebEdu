@@ -1,0 +1,12 @@
+package com.WebEdu.DreamFlying.dao.impl;
+
+import com.WebEdu.DreamFlying.dao.TeacherDao;
+import com.WebEdu.DreamFlying.model.Teacher;
+
+/**
+ * @author  riikang
+ */
+
+public class TeacherDaoImpl extends BaseDaoImpl<Teacher> implements TeacherDao{
+
+}

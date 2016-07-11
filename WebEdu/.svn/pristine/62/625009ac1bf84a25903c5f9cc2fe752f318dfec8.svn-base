@@ -1,0 +1,11 @@
+package com.WebEdu.DreamFlying.dao.impl;
+
+import java.util.List;
+
+import com.WebEdu.DreamFlying.model.Manager;
+import com.WebEdu.DreamFlying.model.Teacher;
+import com.WebEdu.DreamFlying.dao.ManagerDao;
+
+public class ManagerDaoImpl extends BaseDaoImpl<Manager> implements ManagerDao{
+	
+}

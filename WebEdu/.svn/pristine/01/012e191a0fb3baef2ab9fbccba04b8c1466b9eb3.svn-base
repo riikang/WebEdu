@@ -1,0 +1,106 @@
+package com.test;
+
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+
+
+
+
+
+
+import com.WebEdu.DreamFlying.model.Student;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+import com.WebEdu.DreamFlying.service.dao.impl.StudentServiceDaoImpl;
+import com.WebEdu.DreamFlying.service.dao.BaseServiceDao;;
+
+/**
+ * @author GuHong 
+ */
+
+public class StudentDaoImplTest {
+	
+	private static ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
+	private static StudentServiceDao studentService = (StudentServiceDao) ctx
+			.getBean("StudentServiceDao");
+	private static BaseServiceDao<Student> baseService = (BaseServiceDao<Student>) ctx
+			.getBean("BaseServiceDao");
+	public static StudentServiceDao getStudentService() {
+		return studentService;
+	}
+	
+
+	public static void setStudentService(StudentServiceDao studentService) {
+		StudentDaoImplTest.studentService = studentService;
+	}
+
+	public static void main(String[] args) {
+
+	}
+	
+//	@org.junit.Test
+//	public void add(){
+//		System.out.println("111111");
+//		Student stu = new Student();
+//		stu.setSname("AAA");
+//		stu.setPassword("123456");
+//		stu.setBirthday(new Date(1991, 11, 16));
+//		stu.setPhoneNum("10086");
+//		stu.setSex("男");
+//		stu.setAddress("广州南沙");
+//		stu.setCredit(6);
+//		stu.setUsername("abcde");
+//		System.out.println("22222222");
+//		try {
+//			studentService.save(stu);
+//			System.out.println("33333333");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+//	@Test
+//	public void update(){
+//		try {
+//			Student stu =baseService.findById(Student.class,1);
+//			stu.setSname("bbbbbb");
+//			baseService.update(stu);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	@Test
+//	public void delete(){
+//		try {
+//			studentService.deleteById(Student.class,2);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	@Test
+//	public void findAll(){
+//		List<Student> students;
+//		try {
+//			students = studentService.findAll(Student.class);
+//	for (Student student : students) {
+//		System.out.println("findAll:"+student);
+//	}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			Assert.assertTrue(false);
+//		}
+//		
+//	}
+
+}

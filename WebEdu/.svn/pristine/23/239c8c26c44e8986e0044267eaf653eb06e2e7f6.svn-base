@@ -1,0 +1,8 @@
+package com.WebEdu.DreamFlying.dao.impl;
+
+import com.WebEdu.DreamFlying.dao.CourseDao;
+import com.WebEdu.DreamFlying.model.Course;
+
+public class CourseDaoImpl extends BaseDaoImpl<Course> implements CourseDao {
+
+}

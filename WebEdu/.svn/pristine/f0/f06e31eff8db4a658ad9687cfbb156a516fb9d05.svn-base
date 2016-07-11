@@ -1,0 +1,34 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false"
+	package="com.WebEdu.DreamFlying.model">
+	<class lazy="false" name="Course" table="course">
+	
+		<id column="cid" name="cid" type="integer">
+		 <generator class="native"/>
+		</id>
+		<property column="课程名" generated="never" lazy="false" name="cname"
+			type="string"  />
+		<property column="课程描述" generated="never" lazy="false" name="discription"
+			type="string" />
+		<property column="课程封面" generated="never" lazy="false" name="cimg"
+			type="string" />
+		<property column="学分" generated="never" lazy="false" name="credit"
+			type="integer" />
+		<property column="热度" generated="never" lazy="false" name="heat"
+			type="integer" />
+		<property column="课程类型" generated="never" lazy="false" name="type"
+			type="string" />
+			
+		<set name="teachers" table="teach_class" >
+			<key column="course_id" not-null="true"/>
+			<many-to-many column="teacher_id" class="Teacher" />
+		</set>	
+		
+		<set name="students" table="take_class" inverse="true">
+			<key column="cid" not-null="true"/>
+			<many-to-many column="sid" class="Student" />
+		</set>
+	
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+package com.WebEdu.DreamFlying.dao.impl;
+import java.util.List;
+
+import com.WebEdu.DreamFlying.dao.StudentDao;
+import com.WebEdu.DreamFlying.model.Student;
+
+/**
+ * @author  GuHong
+ */
+
+public class StudentDaoImpl extends BaseDaoImpl<Student> implements StudentDao {
+	@Override
+	public List<Student> findStudentByUserName(String student_username) {
+		return  (List<Student>) getHibernateTemplate().find("from Student where username ='"+student_username+"'");
+	}
+	
+	
+}

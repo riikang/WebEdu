@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<constant name="struts.i18n.reload" value="true"/>
+	
+	<package name="default" extends="struts-default" namespace="/study">
+			
+		<action name="loginCheckAction" class="stuAction" method="loginCheck">
+		    <result name="success">/index.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		
+	</package>
+	
+		<package name="student" extends="struts-default" namespace="/student">
+			
+		<action name="*_*" class="action.{1}Action" method="{2}">
+		    <result name="login_success">/index.jsp</result>
+			<result name="login_failure">/login.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>    

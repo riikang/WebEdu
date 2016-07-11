@@ -1,0 +1,353 @@
+package com.WebEdu.DreamFlying.action;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+
+import com.WebEdu.DreamFlying.model.Comment;
+import com.WebEdu.DreamFlying.model.Course;
+import com.WebEdu.DreamFlying.model.Resources;
+import com.WebEdu.DreamFlying.model.Student;
+import com.WebEdu.DreamFlying.model.Teacher;
+import com.WebEdu.DreamFlying.model.Test;
+import com.WebEdu.DreamFlying.service.dao.CommentServiceDao;
+import com.WebEdu.DreamFlying.service.dao.CourseServiceDao;
+import com.WebEdu.DreamFlying.service.dao.ResourceServiceDao;
+import com.WebEdu.DreamFlying.service.dao.StudentServiceDao;
+import com.WebEdu.DreamFlying.service.dao.TeacherServiceDao;
+import com.WebEdu.DreamFlying.service.dao.TestServiceDao;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CourseAction extends ActionSupport {
+	@Resource private TestServiceDao testService;
+	@Resource private CourseServiceDao courseService;
+	@Resource private StudentServiceDao studentService;
+	@Resource private ResourceServiceDao resourceService;
+	@Resource private TeacherServiceDao teacherServiceDao;
+	@Resource private CommentServiceDao commentServiceDao;
+	private List<Course> courses;
+	private List<Test> tests;
+	private List<Resources> resources;
+	private List<Resources> res_video;
+	private List<Resources> res_document;
+	private List<Comment> comments;
+	private List<Student> students;
+	private Course course;
+	private Teacher teacher;
+	private Resources resource;
+	private File upload;
+	private String uploadContentType;
+	private String uploadFileName;
+	private String result;
+	private int courseId;
+	private int id;
+	private int num;
+	private String stu_credit;//总学分获得百分比
+	private String course_credit;//当前课程学分百分比
+	private String course_score;
+	private int course_credit_int;
+	double end_score=100; //总学分
+	
+	
+	public String getCourse_score() {
+		return course_score;
+	}
+	public void setCourse_score(String course_score) {
+		this.course_score = course_score;
+	}
+	public List<Test> getTests() {
+		return tests;
+	}
+	public void setTests(List<Test> tests) {
+		this.tests = tests;
+	}
+	public int getCourse_credit_int() {
+		return course_credit_int;
+	}
+	public void setCourse_credit_int(int course_credit_int) {
+		this.course_credit_int = course_credit_int;
+	}
+	public String getCourse_credit() {
+		return course_credit;
+	}
+	public void setCourse_credit(String course_credit) {
+		this.course_credit = course_credit;
+	}
+	public String getStu_credit() {
+		return stu_credit;
+	}
+	public void setStu_credit(String stu_credit) {
+		this.stu_credit = stu_credit;
+	}
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	public List<Resources> getRes_video() {
+		return res_video;
+	}
+	public void setRes_video(List<Resources> res_video) {
+		this.res_video = res_video;
+	}
+	public List<Resources> getRes_document() {
+		return res_document;
+	}
+	public void setRes_document(List<Resources> res_document) {
+		this.res_document = res_document;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+	public List<Resources> getResources() {
+		return resources;
+	}
+	public void setResources(List<Resources> resources) {
+		this.resources = resources;
+	}
+	public Resources getResource() {
+		return resource;
+	}
+	public void setResource(Resources resource) {
+		this.resource = resource;
+	} 
+	public File getUpload() {
+		return upload;
+	}
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	
+	public String findAllCourse() throws Exception{
+		courses=courseService.findAll(Course.class);
+		return "getAllCourse_success";
+	}
+	public int getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+	public String findTheCourse() throws Exception {
+		ActionContext.getContext().getApplication().put("ccid", id); //保存课程ID
+		//获取课程ID
+		String ids=String.valueOf(ActionContext.getContext().getApplication().get("ccid"));
+		int idt=Integer.valueOf(ids);
+		//获取用户名（登陆账号）
+		String user_name=String.valueOf(ActionContext.getContext().getApplication().get("username"));
+		if(user_name.equals("登录")||user_name==null){
+			return "getCourse_fail";
+		}else{
+		//查询数据
+		students=studentService.findByName(user_name);
+		course=courseService.findById(Course.class, idt);
+		res_video=resourceService.findResourcesByType(idt, "video");
+		res_document=resourceService.findResourcesByType(idt, "document");
+		comments=commentServiceDao.findCommentByCourseid(idt);
+		tests=testService.FindExam(course.getCid(), students.get(0).getSid());
+		//计算总学分获得情况
+		double score1=((double)students.get(0).getCredit()/end_score)*100;
+		int score2= (int)score1;
+		stu_credit=String.valueOf(score2)+"%";
+		//计算当前课程学分获得情况
+		int ii=0;
+		for(int i=0;i<tests.size();i++){
+			if(tests.get(i).getScore()>=60){
+				ii++;
+			}
+		}
+		course_credit_int=ii;
+		score1=((double)course_credit_int/course.getCredit())*100;
+		score2=(int)score1;
+		course_credit=String.valueOf(score2)+"%";
+		//计算当前课程考试平均分
+		int total=0;
+		for(int i=0;i<tests.size();i++){
+			total+=tests.get(i).getScore();
+		}
+		score1=((double)total/tests.size());
+		score2=(int)score1;
+		course_score=String.valueOf(score2);
+		return "getCourse_success";
+		}
+		
+	}
+	
+	public String findTheCourse2() throws Exception {
+		//获取课程ID
+				String ids=String.valueOf(ActionContext.getContext().getApplication().get("ccid"));
+				int idt=Integer.valueOf(ids);
+				//获取用户名（登陆账号）
+				String user_name=String.valueOf(ActionContext.getContext().getApplication().get("username"));
+				
+				if(user_name.equals("登录")||user_name==null){
+					return "getCourse_fail";
+				}else{
+				//查询数据
+				students=studentService.findByName(user_name);
+				course=courseService.findById(Course.class, idt);
+				res_video=resourceService.findResourcesByType(idt, "video");
+				res_document=resourceService.findResourcesByType(idt, "document");
+				comments=commentServiceDao.findCommentByCourseid(idt);
+				tests=testService.FindExam(course.getCid(), students.get(0).getSid());
+				//计算总学分获得情况
+				double score1=((double)students.get(0).getCredit()/end_score)*100;
+				int score2= (int)score1;
+				stu_credit=String.valueOf(score2)+"%";
+				//计算当前课程学分获得情况
+				int ii=0;
+				for(int i=0;i<tests.size();i++){
+					if(tests.get(i).getScore()>=60){
+						ii++;
+					}
+				}
+				course_credit_int=ii;
+				score1=((double)course_credit_int/course.getCredit())*100;
+				score2=(int)score1;
+				course_credit=String.valueOf(score2)+"%";
+				//计算当前课程考试平均分
+				int total=0;
+				for(int i=0;i<tests.size();i++){
+					total+=tests.get(i).getScore();
+				}
+				score1=((double)total/tests.size());
+				score2=(int)score1;
+				course_score=String.valueOf(score2);
+				return "getCourse_success";
+				}
+	}
+	
+	public String updateHeat() throws Exception{
+		String ids=String.valueOf(ActionContext.getContext().getApplication().get("ccid"));
+		String user_name=String.valueOf(ActionContext.getContext().getApplication().get("username"));
+		int idt=Integer.valueOf(ids);
+		course=courseService.findById(Course.class, idt);
+		students=studentService.findByName(user_name);
+		course.setHeat(num);
+		if(students.get(0).getCourses().toString().equals("[]")){
+			course.getStudents().add(students.get(0));
+			students.get(0).getCourses().add(course);
+			studentService.update(students.get(0));
+			courseService.update(course);
+		}else{
+			System.out.println("有这个人！！！！");
+		}
+		return "updateHeat_success";
+	}
+	
+	
+    public String  addCourse() throws IOException {
+		String imgPath=null;
+    	String path=ServletActionContext.getServletContext().getRealPath("/img/portfolios/"+course.getType());
+		File file=new File(path);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+		imgPath="img/portfolios/"+course.getType()+"/"+uploadFileName;
+		course.setCimg(imgPath);
+		FileUtils.copyFile(upload, new File(file,uploadFileName));
+		
+		try {
+		    teacher=teacherServiceDao.findById(Teacher.class, teacher.getTid());			 		
+			course.getTeachers().add(teacher);
+			teacher.getCourses().add(course);
+			courseService.save(course);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		result="添加课程成功!";
+		return SUCCESS;
+		
+	}
+	
+    public String findAllCourses(){
+    	try {
+			courses=courseService.findAll(Course.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "findCourses_success";
+    }
+    public String  getUpdateCourse() throws Exception {
+    	course=courseService.findById(Course.class, courseId);
+    	return "getUpdateCourse_success";
+		
+	}
+    public String  updateCourse() throws Exception {
+    	System.out.println("????????????????");
+    	System.out.println(course.getCredit());
+    	System.out.println(course.getCid());
+    	courseService.update(course); 
+    	result="修改成功";
+    	return "updateCourse_success";
+		
+	} 
+    public String  deleteCourse() throws Exception {
+		System.out.println(course.getCid());
+		course=courseService.findById(Course.class, course.getCid());
+    	courseService.delete(course);
+    	return "deleteCourse_success";
+		
+	}
+    
+	
+}

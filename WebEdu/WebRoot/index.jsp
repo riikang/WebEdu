@@ -1,0 +1,297 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="com.opensymphony.xwork2.ActionContext"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+if(ActionContext.getContext().getApplication().get("username")==null){
+	ActionContext.getContext().getApplication().put("username","登录");
+} 
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    <title>DF - 在线学习网站</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.useso.com/css?family=Italiana' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.useso.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.useso.com/css?family=Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'>
+	<link href="css/my.css" rel="stylesheet" type="text/css" media="all"/>
+	<script type="application/x-javascript"> 
+		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	</script>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/responsiveslides.min.js"></script>
+	<script src="js/logo.js"></script>
+	<script>
+    $(function () {
+    	
+      	$("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+      	
+    });
+  </script>
+  
+  </head>
+  
+  <body>
+    <!--header-->
+			<div class="header">
+				<div class="container">
+					<div class="header-top">
+						<nav class="navbar navbar-default">
+							<div class="container-fluid">
+								<div class="navbar-header">									  
+									<div class="navbar-brand">
+										<h1><a href="welcome.jsp"><canvas id="canvas" width="380" height="40">Sorry, canvas not supported</canvas></a></h1>
+									</div>
+								</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							  <ul class="nav navbar-nav"> 
+									<li class="active"><a href="welcome.jsp">主页 <span class="sr-only">(current)</span></a></li>
+									<li><a href="student/courseAction_findAllCourse.action">课程</a></li>
+									<li><a href="student/courseAction_findMyCourse.action">我的课程</a></li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户 <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="login.jsp"><%=ActionContext.getContext().getApplication().get("username") %></a></li>
+									<li><a href="student/userAction_logOut.action">注销</a></li>
+								</ul>
+									</li>					
+									<li><a href="contact.jsp">联系方式</a></li>
+								</ul>
+							</div>
+  						</div>		
+					</nav>
+				</div>
+				
+			<div class="slider">
+				<div class="callbacks_container">
+					<ul class="rslides" id="slider">
+						 <li>	 
+							<div class="caption">
+								<h3>只要心还在跳，就要努力学习。 —— 张海迪 </h3>
+							</div>
+						 </li>
+						 <li>
+							<div class="caption">						 
+								<h3>读活书，活读书，读书活。 —— 郭沫若 </h3>  
+							</div>
+						</li>
+						 <li>	          
+							<div class="caption">
+								<h3>游手好闲地学习，并不比学习游手好闲好。<br> —— 约翰·贝勒斯 </h3>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" >
+        window.addEventListener("load", MakeLogo, true);//加载logo
+    </script>
+<!--header-->
+
+	<!--课程推荐-->
+	<div class="content">
+		<div class="about">
+			<div class="container">
+				<div class="header-bottom">
+					<div class="header-grids">
+						<s:iterator value="popular_courses" id="popular" status="st">
+						<div class="col-md-4 header-grid">
+							<div class="header-bg">
+								<a href="<%=path%>/student/courseAction_findTheCourse.action?id=<s:property value="#popular.cid"/>">
+								<img src="<s:property value="#popular.cimg"/>" class="img-responsive" alt="/">
+								</a>
+								<a href="<%=path%>/student/courseAction_findTheCourse.action?id=<s:property value="#popular.cid"/>">
+								<h4><s:property value="#popular.cname"/></h4>
+								</a>
+								<p><s:property value="#popular.discription"/></p>
+							</div>
+						</div>
+						</s:iterator>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+					<h2>&nbsp;</h2>
+					<div class="about-grids">
+						<div class="col-md-6 about-grid" onclick="window.location.href='<%=path%>/teacher/teacher-login.jsp'">
+							<div class="about-grid-left">
+								<h4>教师入口</h4>
+								<p>教师管理资源</p>
+							</div>
+							<div class="about-grid-right">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="col-md-6 about-grid">
+							<div class="about-grid-right aliquam">
+								<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+							</div>
+							<div class="about-grid-left non">
+								<h4>课后习题 </h4>
+								<p>要想成绩好，习题少不了。</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>		
+					<div class="about-grids">
+						<div class="col-md-6 about-grid" onclick="window.location.href='<%=path%>/manager/admin-login.jsp'">
+							<div class="about-grid-left">
+								<h4>后台管理</h4>
+								<p>只有管理员才能进入哦。</p>
+							</div>
+							<div class="about-grid-right">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="col-md-6 about-grid" onclick="window.location.href='student/courseAction_findAllCourse.action'">
+							<div class="about-grid-right aliquam">
+								<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+							</div>
+							<div class="about-grid-left non">
+								<h4>课程选择</h4>
+								<p>少年，我看你骨骼精奇，是万中无一的学习奇才，维护世界的和平就靠你了，我这有许多书籍，见与你有缘，就免费送你了。</p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+			</div>
+		</div>
+	<!--课程推荐-->
+	
+	<!--网页服务-->
+				<div class="student">
+					<div class="container">
+						<h3>网站提供</h3>
+							<div class="student-grids">
+								<div class="col-md-4 student-grid">
+									<img src="images/p1.jpg" class="img-responsive" alt=""/>
+									<h4>在线课程教学</h4>
+									<p>本网站将提供当下热门的课程，供各位用户学习，以及提供相关的课程资源下载。</p>
+								</div>
+								<div class="col-md-4 student-grid">
+								<img src="images/p2.png" class="img-responsive" alt="/">
+									<h4>课后习题巩固</h4>
+									<p>在完成了一门课程的学习，您可以进行相关习题的巩固练习，让你如虎添翼。</p>
+								</div>
+								<div class="col-md-4 student-grid">
+								<img src="images/p3.JPG" class="img-responsive" alt="/">
+									<h4>师生交流互动</h4>
+									<p>在每门课程里，我们会提供老师与学生，以及学生与学生的交流平台，让每位学生的问题得到及时的解决。</p>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+					</div>
+				</div>
+		<!--网页服务-->
+		
+		<!-- 新课程-->
+		<div class="new-course">
+			<div class="container">
+				<h3>新课程</h3>
+					<div class="new-course-grids">
+					<div class="col-md-6 new-course-grid">
+						<img src="images/new_course1.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>Haddop</h4>
+							<p>Hadoop是一个由Apache基金会所开发的分布式系统基础架构.</p>
+						</div>
+					</div>
+					<div class="col-md-6 new-course-grid">
+						<img src="images/new_course2.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>Html5</h4>
+							<p>万维网的核心语言、标准通用标记语言下的一个应用超文本标记语言（HTML）的第五次重大修改.</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					</div>
+					
+					<div class="new-course-grids">
+					<div class="col-md-6 new-course-grid">
+						<img src="images/new_course3.png" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>AJAX</h4>
+							<p>AJAX即“Asynchronous Javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术.</p>
+						</div>
+					</div>
+					<div class="col-md-6 new-course-grid">
+						<img src="images/new_course4.jpg" class="img-responsive" alt=""/>
+						<div class="course-info">
+							<h4>JSON</h4>
+							<p>JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。它基于ECMAScript的一个子集.</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					</div>
+			</div>
+		</div>
+		<!-- 新课程-->
+		
+		<div class="testimonial">
+			<div class="container">
+			<div class="testimonial-grids">
+				<div class="col-md-4 testimonial-grid">
+					<h3>学习排行榜</h3>
+					<h4>&nbsp;</h4>
+					<ol style="font-size: 20px; ">
+					<s:iterator value="good_student" id="goodstu" status="st">
+					<s:if test="#st.index<=4">
+					 <li><s:property value="#goodstu.sname" /></li>
+					</s:if>
+					</s:iterator>                       	                        
+                    </ol>
+				</div>
+					<div class="col-md-8 testimonial-grid-right">
+					<h3>优秀课程</h3>
+						<div class="Works-grids">
+						<s:iterator value="good_courses" id="good">
+						<div class="col-md-4 Works-grid">
+						<a href="<%=path%>/student/courseAction_findTheCourse.action?id=<s:property value="#good.cid"/>">
+						<img src="<s:property value="#good.cimg"/>" class="img-responsive" alt=""/>
+						</a>
+						<p><s:property value="#good.discription"/></p>
+						</div>
+						</s:iterator>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				<div class="clearfix"></div>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--footer-->
+				<div class="footer-section">
+					<div class="container">
+						<div class="social-icons">
+							<a href="#"><i class="icon1"></i></a>
+							<a href="#"><i class="icon4"></i></a>
+						</div>
+						<div class="footer-top">
+							<p>Copyright &copy; 2016. By LLC.</p>
+						</div>						
+					</div>
+				</div>
+	<!--footer-->
+
+  </body>
+</html>

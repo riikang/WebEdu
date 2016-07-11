@@ -1,0 +1,13 @@
+package com.WebEdu.DreamFlying.dao;
+
+import java.util.List;
+
+import com.WebEdu.DreamFlying.model.Student;
+
+
+/**
+ * @author GuHong
+ */
+public interface StudentDao extends BaseDao<Student> {
+	public List<Student> findStudentByUserName(String student_username);
+}

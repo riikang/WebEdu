@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/js/jquery.min.js,WebRoot/js/jquery.min_74e92c4.js,WebRoot/js/jquery-1.11.1.min.js,WebRoot/js/lightbox-plus-jquery.min.js
+validator.Revalidate=true
+validator.Unchecked=

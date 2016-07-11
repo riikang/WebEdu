@@ -1,0 +1,6 @@
+package com.WebEdu.DreamFlying.service.dao;
+import com.WebEdu.DreamFlying.model.Test;
+
+public interface TestServiceDao extends BaseServiceDao<Test> {
+
+}
